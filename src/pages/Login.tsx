@@ -1,11 +1,11 @@
-import PageContainer from '../components/PageContainer'
-import { FaSpotify } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
+import PageContainer from '../components/PageContainer'
 import Button from '../components/Button'
+import { FaSpotify } from 'react-icons/fa'
 
 function Login() {
     const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
-    const REDIRECT_URI = 'http://localhost:5173'
+    const REDIRECT_URI = 'http://localhost:5173/player'
     const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize'
     const RESPONSE_TYPE = 'token'
 
@@ -47,7 +47,6 @@ function Login() {
                 </a>
                 : <Button onClick={logout}>Log out</Button>
             }
-            {token}
         </div>
       </section>
     </PageContainer>
