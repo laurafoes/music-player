@@ -1,5 +1,14 @@
 import Player from './Player';
 import placeholder from '/src/assets/placeholder.png'
+// solicitar pelo app
+// cliente ugf
+//   sem login
+//   na hora solicitar, selecionar opcao de outra unimed
+
+// unidade rua antonio dib mussi, 351 centro
+
+
+
 
 function MainCard() {
   return (

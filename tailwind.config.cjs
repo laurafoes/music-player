@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'banner': "url('src/assets/banner.jpg')",
+      },
       fontFamily: {
         sans: ['Circular Std', ...defaultTheme.fontFamily.sans],
       },
