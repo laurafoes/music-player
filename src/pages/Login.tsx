@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import PageContainer from '../components/PageContainer'
 import Button from '../components/Button'
 import { FaSpotify } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
+import { addToken, useToken } from '../redux/sliceToken'
+import { useDispatch } from 'react-redux'
 
 function Login() {
     const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
@@ -9,7 +12,10 @@ function Login() {
     const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize'
     const RESPONSE_TYPE = 'token'
 
-    const [ token, setToken ] = useState("")
+    const [ newToken, setNewToken ] = useState<string>("")
+
+    const token = useSelector(useToken)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const hash = window.location.hash
@@ -21,14 +27,16 @@ function Login() {
             if(token !== undefined) {
                 window.location.hash = ""
                 window.localStorage.setItem("token", token)
-                setToken(token)
+                setNewToken(token)
+                dispatch(addToken(token))
             }
         }
-    })
+    }, [])
 
     const logout = () => {
-        setToken("")
+        setNewToken("")
         window.localStorage.removeItem("token")
+        dispatch(addToken(''))
     }
 
   return (
@@ -39,7 +47,7 @@ function Login() {
                 <FaSpotify size={60} />
                 <p className='text-titleSize w-1/2 pl-8'>começe a ouvir música hoje mesmo</p>
             </div>
-            { !token ?
+            { newToken === '' ?
                 <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>
                     <Button>
                         Login com o Spotify

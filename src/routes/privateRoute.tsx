@@ -5,11 +5,11 @@ interface PrivateRouteProps {
 }
 
 function PrivateRoute({ children }: PrivateRouteProps) {
-    const token = window.localStorage.getItem("token")
+  const token = localStorage.getItem("token")
 
   return(
     <>
-        { token ? children : <Navigate to='/' /> }
+        { token !== '' ? children : <Navigate to='/' /> }
     </>
   )
 }

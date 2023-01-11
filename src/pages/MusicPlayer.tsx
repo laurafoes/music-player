@@ -4,6 +4,7 @@ import SecondaryCard from '../components/SecondaryCard'
 import Search from '../components/Search'
 
 function MusicPlayer() {
+  
   return (
     <PageContainer loginPage={false}>
       <Search />
