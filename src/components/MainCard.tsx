@@ -1,4 +1,4 @@
-import Player from './Player';
+import PlayerControls from './PlayerControls';
 import placeholder from '/src/assets/placeholder.png'
 
 function MainCard() {
@@ -14,7 +14,7 @@ function MainCard() {
         </div>
       </div>
       <div className="flex flex-col justify-evenly mt-4 sm:mt-0 sm:h-[15%] bg-cardColor rounded-xl lg:h-[20%] xl:h-[15%] xl:mt-6 2xl:mt-12">
-        <Player type='primary' progressBar={true} />
+        <PlayerControls type='primary' progressBar={true} />
       </div>
     </div>
   );

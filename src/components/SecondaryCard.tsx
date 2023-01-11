@@ -1,4 +1,4 @@
-import Player from './Player'
+import PlayerControls from './PlayerControls'
 import placeholder from '/src/assets/placeholder.png'
 
 interface CardProps {
@@ -18,7 +18,7 @@ function SecondaryCard({ type }: CardProps) {
                     <p className="text-secondary leading-none">Banda Rocketseat</p>
                 </div>
             </div>
-            { type === 'secondary' ? <Player type='secondary' progressBar={false} /> : <Player type='secondary' progressBar={true} />}
+            { type === 'secondary' ? <PlayerControls type='secondary' progressBar={false} /> : <PlayerControls type='secondary' progressBar={true} />}
         </div>
     </>
   )

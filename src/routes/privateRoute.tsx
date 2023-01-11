@@ -9,7 +9,8 @@ function PrivateRoute({ children }: PrivateRouteProps) {
 
   return(
     <>
-        { token !== '' ? children : <Navigate to='/' /> }
+        { children }
+        {/* { token !== '' ? children : <Navigate to='/' /> } */}
     </>
   )
 }

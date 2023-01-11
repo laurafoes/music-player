@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux'
 
 function Login() {
     const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
-    const REDIRECT_URI = 'http://localhost:5173/player'
+    const REDIRECT_URI = 'http://localhost:5173'
     const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize'
     const RESPONSE_TYPE = 'token'
 
@@ -22,17 +22,19 @@ function Login() {
         let token = window.localStorage.getItem("token")
 
         if(!token && hash) {
-            let token = hash.substring(1).split("&").find(element => element.startsWith("access_token"))?.split("=")[1]
+            let authToken = hash.substring(1).split("&").find(element => element.startsWith("access_token"))?.split("=")[1]
+            console.log(authToken)
 
-            if(token !== undefined) {
+            if(authToken !== undefined) {
                 window.location.hash = ""
-                window.localStorage.setItem("token", token)
-                setNewToken(token)
-                dispatch(addToken(token))
+                window.localStorage.setItem("token", authToken)
+                setNewToken(authToken)
+                console.log(newToken)
             }
         }
+        dispatch(addToken(newToken))
     }, [])
-
+    
     const logout = () => {
         setNewToken("")
         window.localStorage.removeItem("token")
@@ -53,7 +55,7 @@ function Login() {
                         Login com o Spotify
                     </Button>
                 </a>
-                : <Button onClick={logout}>Log out</Button>
+                : <><a href='/player' className='text-bodySize pb-4 transition-all hover:scale-110 hover:text-active '>Clique aqui para comecar</a><Button onClick={logout}>Log out</Button></>
             }
         </div>
       </section>
