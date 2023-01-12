@@ -5,6 +5,7 @@ import { FaSpotify } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
 import { addToken, useToken } from '../redux/sliceToken'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 function Login() {
     const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
@@ -29,11 +30,11 @@ function Login() {
                 window.location.hash = ""
                 window.localStorage.setItem("token", authToken)
                 setNewToken(authToken)
-                console.log(newToken)
             }
-        }
+        } else { 
+            token ? setNewToken(token) : null }
         dispatch(addToken(newToken))
-    }, [])
+    }, [newToken])
     
     const logout = () => {
         setNewToken("")
@@ -43,9 +44,9 @@ function Login() {
 
   return (
     <PageContainer loginPage={true}>
-      <section className="w-[85%] h-auto sm:h-[60%] max-w-[930px] lg:max-h-[660px] md:h-[50%] lg:h-[65%] lg:w-[65%] xl:h-[75%] rounded-xl bg-gradient-to-tr from-active to-spotify rounded-x flex justify-center items-center">
+      <section className="w-[85%] h-auto py-24 px-6 sm:h-[60%] max-w-[930px] lg:max-h-[660px] md:h-[50%] lg:h-[65%] lg:w-[65%] xl:h-[75%] rounded-xl bg-gradient-to-tr from-active to-spotify rounded-x flex justify-center items-center">
         <div className='w-auto h-auto flex flex-col justify-center items-start'>
-            <div className='w-full h-40 flex items-center'>
+            <div className='w-full h-auto sm:h-40 flex items-center'>
                 <FaSpotify size={60} />
                 <p className='text-titleSize w-1/2 pl-8'>começe a ouvir música hoje mesmo</p>
             </div>
@@ -55,7 +56,7 @@ function Login() {
                         Login com o Spotify
                     </Button>
                 </a>
-                : <><a href='/player' className='text-bodySize pb-4 transition-all hover:scale-110 hover:text-active '>Clique aqui para comecar</a><Button onClick={logout}>Log out</Button></>
+                : <><Link to='/player' className='text-bodySize pt-4 pb-8 transition-all hover:scale-110 hover:text-black md:text-titleSize'>Clique aqui para comecar a ouvir</Link><Button onClick={logout}>Log out</Button></>
             }
         </div>
       </section>

@@ -4,12 +4,12 @@ interface ButtonProps {
     children: React.ReactNode,
     onClick?: React.MouseEventHandler<HTMLButtonElement>,
     search?: boolean,
-    type?: 'submit'
+    type?: 'submit' | 'delete'
 }
 
-function Button({ children, onClick, search }: ButtonProps) {
+function Button({ children, onClick, search, type }: ButtonProps) {
   return (
-    <button className={`border border-white rounded-full px-4 sm:px-12 py-2 bg-white bg-opacity-0 transition-all hover:scale-110 hover:bg-opacity-10 ${ search ? 'self-end' : null }`} onClick={onClick}>
+    <button className={`rounded-full py-2 ${ type === 'delete' ? 'px-2 border-none' : 'border border-white px-4 sm:px-12 border-none' }bg-white bg-opacity-0 transition-all hover:scale-110 hover:bg-opacity-10 ${ search ? 'self-end' : null }`} onClick={onClick}>
       { children }
     </button>
   )

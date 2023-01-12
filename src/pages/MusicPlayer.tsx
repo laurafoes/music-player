@@ -2,9 +2,24 @@ import PageContainer from '../components/PageContainer'
 import MainCard from '../components/MainCard'
 import SecondaryCard from '../components/SecondaryCard'
 import Search from '../components/Search'
+import { useSelector } from 'react-redux';
+import { addToken, useToken } from '../redux/sliceToken';
+import Button from '../components/Button';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function MusicPlayer() {
-  
+  const token = useSelector(useToken);
+  const dispatch = useDispatch()
+
+  const navigate = useNavigate()
+
+  const logout = () => {
+    window.localStorage.removeItem("token")
+    dispatch(addToken(''))
+    navigate('/')
+}
+
   return (
     <PageContainer loginPage={false}>
       <Search />
@@ -15,6 +30,8 @@ function MusicPlayer() {
           <SecondaryCard type='secondary' />
         </div>
       </section>
+      { token !== '' ? <div className='mt-8'><Button onClick={logout}>Logout</Button>
+      </div> : null}
     </PageContainer>
   )
 }

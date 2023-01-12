@@ -5,7 +5,7 @@ interface Token {
 }
 
 const initialState: Token =
-    localStorage.getItem("token") ? { token : localStorage.getItem("token") } : { token: '' }
+    { token: '' }
 
 
 const sliceToken = createSlice({
@@ -22,5 +22,5 @@ export default sliceToken.reducer
 export const { addToken } = sliceToken.actions
 
 export const useToken = (state: any) => {
-    return state.token as string
+    return state.token
 }
